@@ -84,3 +84,76 @@ function noJobAvailable(){
         }
     }
 }
+mainContainer.addEventListener('click',function(event){
+    const btn= event.target.closest('.delete')
+    if(btn){
+       const parentNode=event.target.closest('.card');
+       const companyName = parentNode.querySelector('.companyName').innerText
+       interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName);
+       parentNode.remove();
+       calTotalCount()
+       renderIntrview()
+       renderRejected()
+       noJobAvailable()
+    }
+
+    if(event.target.classList.contains('interview-btn')){
+    const parentNode = event.target.parentNode.parentNode;
+    const companyName = parentNode.querySelector('.companyName').innerText
+    const jobTittle = parentNode.querySelector('.jobTittle').innerText
+    const salary = parentNode.querySelector('.salary').innerText
+    const statusBtn = parentNode.querySelector('.status-btn').innerText
+    const jobDetails = parentNode.querySelector('.jobDetails').innerText
+    parentNode.querySelector('.status-btn').innerText = 'Interview'
+    const cardInfo = {
+        companyName,
+        jobTittle,
+        salary,
+        statusBtn:'Interview',
+        jobDetails
+    }
+    
+    const companyExist = interviewList.find(item=> item.companyName == cardInfo.companyName)
+    
+    if(!companyExist){
+        interviewList.push(cardInfo)
+    }
+    rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+    if(currentState == 'rejected-filter-btn'){
+        renderRejected()
+    }
+    calTotalCount()
+    noJobAvailable()
+    // renderIntrview()
+    }
+    else if(event.target.classList.contains('rejected-btn')){
+        const parentNode = event.target.parentNode.parentNode;
+    const companyName = parentNode.querySelector('.companyName').innerText
+    const jobTittle = parentNode.querySelector('.jobTittle').innerText
+    const salary = parentNode.querySelector('.salary').innerText
+    const statusBtn = parentNode.querySelector('.status-btn').innerText
+    const jobDetails = parentNode.querySelector('.jobDetails').innerText
+    parentNode.querySelector('.status-btn').innerText = 'Rejected'
+    const cardInfo = {
+        companyName,
+        jobTittle,
+        salary,
+        statusBtn:'Rejected',
+        jobDetails
+    }
+    
+    const companyExist = rejectedList.find(item=> item.companyName == cardInfo.companyName)
+    
+    if(!companyExist){
+        rejectedList.push(cardInfo)
+    }
+    interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
+    if(currentState == 'interview-filter-btn'){
+        renderIntrview()
+    }
+    calTotalCount()
+    noJobAvailable()
+    }
+    
+})
