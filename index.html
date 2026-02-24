@@ -38,6 +38,20 @@
             <button onclick="toggleStyle('interview-filter-btn')" id="interview-filter-btn" class="px-4 py-2 rounded font-[12px] bg-white border-gray-300 hover:bg-gray-100 ">Interview</button>
             <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn" class="px-4 py-2 rounded font-[12px] bg-white border-gray-300 hover:bg-gray-100 ">Rejected</button>
         </div>
+        <!--Filtered Cards -->
+     <section id="filtered-section" class="hidden">
+
+     </section>
+     <!-- Nothing job available Section-->
+      <section id ="No-job-section" class="hidden">
+        <div class="w-full bg-[#F1F2F4] p-25 text-center space-y-2 rounded-lg ">
+            <div class="flex justify-center">
+                <img src="jobs.png" alt="No job available">
+            </div>
+            <h1 class="text-2xl text-[#002C5C] font-bold">No jobs available</h1>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+      </section>
     <section id="allCards" class="space-y-4 mb-15">
         <div id="card-1" class="card bg-[#F1F2F4] p-6 rounded-lg flex relative">
             <div >
